@@ -1,0 +1,51 @@
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="background-image: url( /assets/<%= @name %>-banner.jpg )">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="site-heading">
+          <h1><%= @game.longname %></h1>
+          <hr class="small">
+          <span class="subheading"><%= @ranks.length %> players in <%= Tournament.where(:game_id => @game.id).length %> tournaments</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <h2>Players</h2>
+  <table class="table">
+    <thread>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Points</th>
+        <th>Main Character</th>
+      </tr>
+    </thread>
+    <tbody>
+    <% r = 1 %>
+    <% prev = -1 %>
+    <% @ranks.each do |pp| %>
+      <tr>
+        <% if prev != pp.scaledpoints %>
+            <td><%= r %></td>
+        <% else %>
+            <td></td>
+        <% end %>
+        <td><a href="/player/<%= pp.player_id %>"><%= Player.find(pp.player_id).name %></a></td>
+        <td><%= pp.scaledpoints %></td>
+        <td><%= pp.mainchar %></td>
+        <% r = r + 1 %>
+        <% prev = pp.scaledpoints %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+
+</div>
+

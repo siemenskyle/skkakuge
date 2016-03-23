@@ -1,0 +1,17 @@
+<div class="container">
+
+  <h3>Add a Player</h3>
+
+  <div class="page-content inset">
+
+
+    <%= form_for @player, url: {action: "create"} do |p| %>
+       <p>Name: <%= p.text_field :name %></p>
+        <br>
+       <p>Aliases: <%= p.text_field :aliases %></p>
+        <%= p.submit "Create" %>
+    <% end %>
+
+  </div>
+
+</div>

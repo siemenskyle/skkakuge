@@ -1,0 +1,13 @@
+<div class="container">
+<br>
+<br>
+
+  <h3>Players</h3>
+
+  <ul>
+    <% @players.each do |pl| %>
+    <li><a href="/player/<%= pl.id %>"><%= pl.name %></a></li>
+    <% end %>
+  </ul>
+
+</div>

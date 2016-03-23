@@ -1,0 +1,31 @@
+<div class="container">
+  <h2><%= @player.name %></h2>
+  <p>Aliases: <%= @player.aliases %></p>
+
+  <% Playerrank.where(:player_id => @player.id).each do |pp| %>
+      <hr>
+      <h3><%= Game.find(pp.game_id).longname %> -- <%= pp.scaledpoints %>pts</h3>
+      <h4>Main Character: <%= pp.mainchar %></h4>
+      <table class="table">
+        <thread>
+          <tr>
+            <th>Tournamnet</th>
+            <th>Placing</th>
+            <th>Points</th>
+          </tr>
+        </thread>
+        <tbody>
+        <% Tournament.order(:date).reverse_order().where(:game_id => pp.game_id).each do |tourney| %>
+        <% r = Tourneyresult.find_by_tournament_id_and_playerrank_id(tourney.id, pp.id) %>
+        <% if r != nil  %>
+            <tr>
+            <td><a href="/tournament/<%=tourney.id%>"><%= tourney.name %></a></td>
+            <td><%= r.placing %></td>
+            <td><%= r.points %></td>
+            </tr>
+        <% end %>
+        <% end %>
+        </tbody>
+      </table>
+
+  <% end %>

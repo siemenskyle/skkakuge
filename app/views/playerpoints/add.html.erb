@@ -1,0 +1,16 @@
+<div class="container">
+
+  <h3>Add a Player to a Game</h3>
+
+  <div class="page-content inset">
+
+    <%= form_for @playerpoints, url: {action: "create"} do |pp| %>
+        <p>Game: <%= pp.select(:game, Game.all.map{|g| [g.name, g.id] }, prompt: true)  %> </p>
+        <p>Player: <%= pp.select(:player, Player.all.map{|p| [p.name, p.id]}, prompt: true) %> </p>
+        <%= pp.submit "Create" %>
+    <% end %>
+
+  </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+<div class="container">
+  <h2><%= @tournament.name %></h2>
+  <h3><%= Game.find(@tournament.game_id).name %> -- <%= @tournament.date %></h3>
+  <table class="table">
+    <thread>
+      <tr>
+        <th>Placing</th>
+        <th>Player</th>
+        <th>Points</th>
+      </tr>
+    </thread>
+    <tbody>
+    <% @rank.each do |r| %>
+    <tr>
+      <td><%= r.placing %></td>
+      <td><a href="/player/<%=Playerrank.find(r.playerrank_id).player_id%>" ><%= Player.find(Playerrank.find(r.playerrank_id).player_id).name %></a></td>
+      <td><%= r.points %></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

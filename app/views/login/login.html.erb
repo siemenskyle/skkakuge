@@ -1,0 +1,15 @@
+<div class="container">
+
+  <h3>Login</h3>
+
+  <div class="page-content inset">
+
+
+    <%= form_tag("trylogin", method: "post") do %>
+        <p><%= password_field(nil,:pw) %></p>
+        <%= submit_tag "Submit" %>
+    <% end %>
+
+  </div>
+
+</div>

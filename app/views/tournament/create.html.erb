@@ -1,0 +1,38 @@
+<div class="container">
+
+  <h2><%= @t.name %></h2>
+
+  <div class="page-content inset">
+
+    <p>date: <%= @t.date %></p>
+    <p>game: <%= Game.find(@t.game_id).longname %></p>
+    <p>entrants: <%= @entrants %></p>
+
+    <table class="table">
+      <thread>
+        <tr>
+          <th>Position</th>
+          <th>Player</th>
+          <th>Points</th>
+        </tr>
+      </thread>
+      <tbody>
+    <% action = "createresults/"+ @t.id.to_s %>
+    <%= form_tag(action, method: "post") do %>
+        <% @results.each do |result| %>
+          <%= fields_for 'results[]' , result do |r| %>
+            <tr>
+              <td><%= r.number_field :placing %></td>
+              <td><%= r.select(:playerrank_id, Playerrank.where(:game_id => @t.game_id).map{|p| [Player.find(p.player_id).name, p.id]}, prompt: true) %></td>
+              <td><%= r.number_field :points %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      <%= submit_tag "Submit" %>
+    <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>

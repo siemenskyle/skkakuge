@@ -1,0 +1,19 @@
+<div class="container">
+
+  <h3>Add a Tournament</h3>
+
+  <div class="page-content inset">
+
+    <%= form_for @tournament, url: {action: "create"} do |t| %>
+        <p>Name: <%= t.text_field :name %></p>
+        <p>Game: <%= t.select(:game, Game.all.map{|g| [g.name, g.id] }, prompt: true)  %> </p>
+        <p>Date: <%= t.date_select :date %></p>
+        <p>Entrants: <%= t.number_field :id %></p>
+        <%= t.submit "Create" %>
+    <% end %>
+
+  </div>
+
+
+</div>
+
