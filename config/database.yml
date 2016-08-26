@@ -3,8 +3,8 @@ mysql_settings: &mysql_settings
   encoding: utf8
   pool: 5
   username: skkakuge
-  password: GunFl4m3
-  host: 173.194.225.82
+  password: -----
+  host: -------
   database: sk-kakuge-activerecord
 
 development:
